@@ -50,29 +50,26 @@ def home():
     if request.method == "POST":
         url_received = request.form["longUrl"]
         customAlias = request.form["customAlias"]
+        customAliasCheck = Urls.query.filter_by(custom=customAlias).first()
         found_url = Urls.query.filter_by(long=url_received).first()
-        if not customAlias:
+        if not customAliasCheck:
             short_url = shorten_url()
         else:
             short_url = customAlias
         print(f"Generated URL: {short_url}")
 
         if found_url:
-            if customAlias: 
+            if customAliasCheck: 
                 print(found_url.custom)
             else:
                 return redirect(url_for("display_short_url", url=found_url.short))
         else:
-            if customAlias:
+            if customAliasCheck:
                 new_url = Urls(long=url_received, custom=short_url)
             else:
                 new_url = Urls(long=url_received, short=short_url)
             db.session.add(new_url)
             db.session.commit()
-            if customAlias:
-                url_for("redirection", short_url=short_url)
-            else:
-                url_for("redirection", customAlias=customAlias)
             return redirect(url_for("display_short_url", url=short_url))
     else:
         return render_template("index.html")
