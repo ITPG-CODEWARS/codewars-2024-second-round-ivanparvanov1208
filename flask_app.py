@@ -33,22 +33,15 @@ class Urls(db.Model):
 def shorten_url():
     letters  = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     size = request.form["urlSize"]
-    customAlias = request.form["customAlias"]
     # Проверка, ако URL адреса вече съществува
     if size:
         rand_letters = random.choices(letters, k=int(size))
     else:
         rand_letters = random.choices(letters, k=7)
     rand_letters = "".join(rand_letters)
-    if customAlias:
-        short_url = Urls.query.filter_by(custom=customAlias).first()
-    else:
-        short_url = Urls.query.filter_by(short=rand_letters).first()
+    short_url = Urls.query.filter_by(short=rand_letters).first()
     if not short_url:
-        if customAlias:
-            return customAlias
-        else:
-            return rand_letters
+        return rand_letters
 
 
 # Back-end за началната страница
@@ -58,12 +51,15 @@ def home():
         url_received = request.form["longUrl"]
         customAlias = request.form["customAlias"]
         found_url = Urls.query.filter_by(long=url_received).first()
-        short_url = shorten_url()
+        if not customAlias:
+            short_url = shorten_url()
+        else:
+            short_url = customAlias
         print(f"Generated URL: {short_url}")
 
         if found_url:
             if customAlias: 
-                return redirect(url_for("display_short_url", url=found_url.custom))
+                print(found_url.custom)
             else:
                 return redirect(url_for("display_short_url", url=found_url.short))
         else:
@@ -73,17 +69,20 @@ def home():
                 new_url = Urls(long=url_received, short=short_url)
             db.session.add(new_url)
             db.session.commit()
+            if customAlias:
+                url_for("redirection", short_url=short_url)
+            else:
+                url_for("redirection", customAlias=customAlias)
             return redirect(url_for("display_short_url", url=short_url))
     else:
         return render_template("index.html")
 
 # Back-end за страницата на генерирания URL адрес
 @app.route('/<short_url>')
-def redirection(short_url):
-    customAlias = request.form["customAlias"]
+def redirection(short_url=None, customAlias=None):
     if customAlias:
-        long_url = Urls.query.filter_by(custom=short_url).first()
-    else:
+        long_url = Urls.query.filter_by(custom=customAlias).first()
+    elif short_url:
         long_url = Urls.query.filter_by(short=short_url).first()
     if long_url:
         return redirect(long_url.long)
