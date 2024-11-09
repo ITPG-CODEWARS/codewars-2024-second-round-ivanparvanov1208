@@ -1,7 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f2f5;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -14,6 +13,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 350px;
+    margin: 0 0;
 }
 
 h1 {
@@ -55,6 +55,65 @@ button {
 button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
+}
+
+.footer {
+    background: linear-gradient(to bottom, #28a745, white);
+    color: black; /* White text */
+    width: 70%; /* Full width */
+    padding: 20px; /* Padding inside the footer */
+    margin-top: 100px;
+    text-align: center;
+    margin-left: 100px;
+    grid-area: footer_section;
+}
+  
+.footer-content {
+    max-width: 1500px; /* Max width for footer content */
+    margin: 0 auto; /* Center the footer content */
+}
+  
+.footer-logo {
+    display: block;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50px;
+}
+
+.footer-logo img {
+    border-radius: 30%;
+    max-width: 200px;
+}
+
+.footer-links,
+.footer-social {
+    margin: 10px 0; /* Space between sections */
+    text-align: center;
+}
+  
+.footer-link,
+.social-link {
+    color: black; /* White text for links */
+    text-decoration: none; /* Remove underline from links */
+    margin: 0 15px; /* Space between links */
+}
+  
+.footer-link:hover,
+.social-link:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+  
+.footer-bottom {
+    margin-top: 20px; /* Space above bottom text */
+    font-size: 14px; /* Smaller font size for copyright */
+    text-align: center; /* Center align copyright text */
+}
+
+.logo {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
 }
 
 @media (max-width: 400px) {
