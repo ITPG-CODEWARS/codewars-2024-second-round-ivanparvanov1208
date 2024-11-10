@@ -1,34 +1,33 @@
+footer,header{display:calc(block)}summary{display:list-item}
+
+header {
+    background: linear-gradient(to bottom, white, #0056b3);
+    height: 100px;
+    width: 100%;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f2f5;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    height: 100vh;
-    margin: 0;
+    margin: 0; /* Remove default margin */
 }
 
 .container {
     background: white;
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    justify-content: center;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 350px;
-    margin: 62px 411px;
-}
-
-header {
-    background: linear-gradient(to bottom, white, #0056b3);
-    color: white;
-    padding: 25px;
-    text-align: center;
+    margin: 20px auto; /* Center horizontally and add margin at the top */
 }
 
 h1 {
     color: #333;
-    margin-bottom: 20px;
-    font-size: 24px;
-    text-align: center;
+    margin-bottom: 20px; /* Add margin below the h1 for spacing */
 }
 
 input {
@@ -71,7 +70,6 @@ footer {
     background: linear-gradient(to top, white, #0056b3);
     color: black;
     position: relative;
-    bottom: 0;
     width: 100%;
 }
   
@@ -118,7 +116,7 @@ footer {
 
 .logo {
     position: relative;
-    top: 10px;
+    top: 20px;
     z-index: 10;
     text-align: center;
 }

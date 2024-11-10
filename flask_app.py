@@ -8,7 +8,7 @@ import os
 app = Flask(__name__, static_url_path="/static")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SECRET_KEY'] = 'your_secrets_key'
 
 db = SQLAlchemy(app)
 
@@ -34,7 +34,7 @@ def generate_short_code():
         if not urlSize:
             short_code = ''.join(random.choices(characters, k=6))
         else:
-            short_code = ''.join(random.choices(characters, k=urlSize))
+            short_code = ''.join(random.choices(characters, k=int(urlSize)))
         if not Urls.query.filter_by(short=short_code).first():
             return short_code
 
@@ -51,22 +51,22 @@ def home():
         else:
             short_code = generate_short_code()
         
-        # Save the URL and short code to the database
-        new_url = Urls(long=longURL, short=short_code)
-        if not new_url:
+        # Save the URL and short code to the database only if longURL is valid
+        if longURL:
+            new_url = Urls(long=longURL, short=short_code)
             db.session.add(new_url)
             db.session.commit()
 
-        # Generate QR code if requested
-        qr_code_path = None
-        full_short_url = request.host_url + short_code
-        qr = qrcode.make(full_short_url)
-        qr_code_path = f'static/img/qr_images/{short_code}.png'
-        os.makedirs(os.path.dirname(qr_code_path), exist_ok=True)
-        qr.save(qr_code_path)
+            # Generate QR code if requested
+            qr_code_path = None
+            full_short_url = request.host_url + short_code
+            qr = qrcode.make(full_short_url)
+            qr_code_path = f'static/img/qr_images/{short_code}.png'
+            os.makedirs(os.path.dirname(qr_code_path), exist_ok=True)
+            qr.save(qr_code_path)
 
-        # Redirect to the page that shows the shortened link (and optionally the QR code)
-        return redirect(url_for('shortened_link', short_code=short_code, qr=qr_code_path))
+            # Redirect to the page that shows the shortened link (and optionally the QR code)
+            return redirect(url_for('shortened_link', short_code=short_code, qr=qr_code_path))
     
     else:
         return render_template('index.html')
@@ -82,10 +82,11 @@ def shortened_link(short_code):
 @app.route('/<short_code>')
 def redirect_to_url(short_code):
     url = Urls.query.filter_by(short=short_code).first()
-    try:
+    if url:
         return redirect(url.long)
-    except Exception:
-        return render_template("notfound.html")
+    else:
+        # Return a 404 error or render a not found page instead of redirecting
+        return render_template('notfound.html'), 404  # Make sure to create a notfound.html template
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port="8080")

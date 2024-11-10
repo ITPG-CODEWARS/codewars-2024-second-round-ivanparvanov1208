@@ -19,19 +19,14 @@
             <a href="{{ full_short_url }}">{{ full_short_url }}</a>
         </div>
         <br>
-        <div id="qrCode">
-            <h3>QR Code</h3>
+        <h3>QR Code:</h3>
+        <div id="qrCode" class="qr-code">
             <img src="{{ url_for('static', filename=qr_code_path.replace('static/', '')) }}" alt="QR Code for shortened link">
         </div>
     </div>
     <br><br>
     <footer>
         <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html" class="footer-link">Начало</a>
-                <a href="HTML/blog.html" class="footer-link">Блог</a>
-                <a href="HTML/contacts.html" class="footer-link">Контакти</a>
-            </div>
             <div class="footer-social">
                 <a href="https://facebook.com" class="social-link">Facebook</a>
                 <a href="https://twitter.com" class="social-link">Twitter</a>
