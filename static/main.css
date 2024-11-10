@@ -13,7 +13,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 350px;
-    margin: 0 0;
+    margin: 62px 411px;
 }
 
 h1 {
@@ -58,14 +58,13 @@ button:hover {
 }
 
 .footer {
-    background: linear-gradient(to bottom, #28a745, white);
+    background: linear-gradient(to bottom, #0040ff, white);
     color: black; /* White text */
     width: 70%; /* Full width */
     padding: 20px; /* Padding inside the footer */
     margin-top: 100px;
     text-align: center;
-    margin-left: 100px;
-    grid-area: footer_section;
+    margin-left: 161px;
 }
   
 .footer-content {
@@ -111,9 +110,9 @@ button:hover {
 
 .logo {
     position: relative;
-    top: 10px;
-    left: 10px;
+    top: 35px;
     z-index: 10;
+    text-align: center;
 }
 
 @media (max-width: 400px) {
