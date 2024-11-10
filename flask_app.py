@@ -47,23 +47,21 @@ def home():
 
         # Check if a custom suffix is provided
         if custom_suffix:
-            if Urls.query.filter_by(short=custom_suffix).first():
-                flash('Custom suffix is already taken. Please choose another one.', 'danger')
-                return redirect(url_for('home'))
             short_code = custom_suffix
         else:
             short_code = generate_short_code()
         
         # Save the URL and short code to the database
         new_url = Urls(long=longURL, short=short_code)
-        db.session.add(new_url)
-        db.session.commit()
+        if not new_url:
+            db.session.add(new_url)
+            db.session.commit()
 
         # Generate QR code if requested
         qr_code_path = None
         full_short_url = request.host_url + short_code
         qr = qrcode.make(full_short_url)
-        qr_code_path = f'static/qr_images/{short_code}.png'
+        qr_code_path = f'static/img/qr_images/{short_code}.png'
         os.makedirs(os.path.dirname(qr_code_path), exist_ok=True)
         qr.save(qr_code_path)
 
@@ -83,7 +81,7 @@ def shortened_link(short_code):
 # Redirect to the original URL
 @app.route('/<short_code>')
 def redirect_to_url(short_code):
-    url = Urls.query.filter_by(short_code=short_code).first_or_404()
+    url = Urls.query.filter_by(short=short_code).first()
     if url.long:
         return redirect(url.long)
     elif 404:

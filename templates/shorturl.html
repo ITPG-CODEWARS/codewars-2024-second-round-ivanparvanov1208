@@ -2,36 +2,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
+    <title>LinkCut</title>
     <link rel="stylesheet" href="../static/result.css">
     </style>
 </head>
 <body>
     <header>
         <a href="/">
-            <img src="../static/img/pngegg.png" alt="URL Shortener logo">
+            <img src="../static/img/pngegg.png" alt="LinkCut logo">
         </a>
     </header>
     <div class="container" id="mainContainer">
-        <h1>URL Shortener</h1>
+        <h1>LinkCut</h1>
         <div id="result" class="url-display">
             <h2>Here's your shortened link: </h2>
             <a href="{{ full_short_url }}">{{ full_short_url }}</a>
         </div>
+        <br>
         <div id="qrCode">
             <h3>QR Code</h3>
             <img src="{{ url_for('static', filename=qr_code_path.replace('static/', '')) }}" alt="QR Code for shortened link">
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer-container">
-            <p>&copy; 2023 Your Company Name. All rights reserved.</p>
-            <ul class="footer-links">
-                <li><a href="/privacy-policy">Privacy Policy</a></li>
-                <li><a href="/terms-of-service">Terms of Service</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-            </ul>
+    <br><br>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Начало</a>
+                <a href="HTML/blog.html" class="footer-link">Блог</a>
+                <a href="HTML/contacts.html" class="footer-link">Контакти</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://facebook.com" class="social-link">Facebook</a>
+                <a href="https://twitter.com" class="social-link">Twitter</a>
+                <a href="https://instagram.com" class="social-link">Instagram</a>
+                <a href="https://linkedin.com" class="social-link">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LinkCut. Всички права запазени.</p>
         </div>
     </footer>
-</body>
 </html>
