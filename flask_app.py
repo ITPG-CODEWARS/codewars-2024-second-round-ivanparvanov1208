@@ -82,10 +82,10 @@ def shortened_link(short_code):
 @app.route('/<short_code>')
 def redirect_to_url(short_code):
     url = Urls.query.filter_by(short=short_code).first()
-    if url.long:
+    try:
         return redirect(url.long)
-    elif 404:
-        render_template("notfound.html")
+    except Exception:
+        return render_template("notfound.html")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port="5000")
