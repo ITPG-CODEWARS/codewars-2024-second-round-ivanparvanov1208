@@ -29,6 +29,13 @@ header h1 {
     font-size: 2.5em;
 }
 
+.logo {
+    position: relative;
+    top: 35px;
+    z-index: 10;
+    text-align: center;
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -90,43 +97,52 @@ footer {
 }
 
 .footer {
-    background-color: #f0f2f5;
-    padding: 20px 0;
+    background: linear-gradient(to bottom, #0040ff, white);
+    color: black; /* White text */
+    width: 70%; /* Full width */
+    padding: 20px; /* Padding inside the footer */
+    margin-top: 100px;
     text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    margin-left: 161px;
+}
+  
+.footer-content {
+    max-width: 1500px; /* Max width for footer content */
+    margin: 0 auto; /* Center the footer content */
+}
+  
+.footer-logo {
+    display: block;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50px;
 }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.footer-logo img {
+    border-radius: 30%;
+    max-width: 200px;
 }
 
-.footer p {
-    color: #666;
-    margin: 0;
-    font-size: 14px;
+.footer-links,
+.footer-social {
+    margin: 10px 0; /* Space between sections */
+    text-align: center;
 }
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
+  
+.footer-link,
+.social-link {
+    color: black; /* White text for links */
+    text-decoration: none; /* Remove underline from links */
+    margin: 0 15px; /* Space between links */
 }
-
-.footer-links li {
-    display: inline;
-    margin: 0 10px;
+  
+.footer-link:hover,
+.social-link:hover {
+    text-decoration: underline; /* Underline on hover for links */
 }
-
-.footer-links a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: #0056b3;
+  
+.footer-bottom {
+    margin-top: 20px; /* Space above bottom text */
+    font-size: 14px; /* Smaller font size for copyright */
+    text-align: center; /* Center align copyright text */
 }

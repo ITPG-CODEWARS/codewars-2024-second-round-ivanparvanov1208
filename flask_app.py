@@ -1,94 +1,84 @@
-# Вкарване на нужните библиотеки! 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 from flask_sqlalchemy import SQLAlchemy
 import random
 import string
+import qrcode
 import os
-from random import randint
 
-app = Flask(__name__, static_url_path='/static')
-
-# Къде ще се запазва информацията за базата данни
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Създаване на object на SQLAlchemy
 db = SQLAlchemy(app)
 
-@app.before_request
-def create_tables():
-    db.create_all()
+# Database model for URLs
+class URLs(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    long = db.Column(db.String(500), nullable=False)
+    short = db.Column(db.String(10), unique=True, nullable=False)
 
-class Urls(db.Model):
-    id_ = db.Column("id_", db.Integer, primary_key=True)
-    long = db.Column("long", db.String())
-    short = db.Column("short", db.String(10))
-    custom = db.Column("custom", db.String())
+# Generate a random short code
+def generate_short_code(length=6):
+    characters = string.ascii_letters + string.digits
+    while True:
+        short_code = ''.join(random.choices(characters, k=length))
+        if not URL.query.filter_by(short=short_code).first():
+            return short_code
 
-    def __init__(self, long, short=None, custom=None):
-        self.long = long
-        self.short = short
-        self.custom = custom
-
-def shorten_url():
-    letters  = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    size = request.form["urlSize"]
-    # Проверка, ако URL адреса вече съществува
-    if size:
-        rand_letters = random.choices(letters, k=int(size))
-    else:
-        rand_letters = random.choices(letters, k=7)
-    rand_letters = "".join(rand_letters)
-    short_url = Urls.query.filter_by(short=rand_letters).first()
-    if not short_url:
-        return rand_letters
-
-
-# Back-end за началната страница
-@app.route('/', methods=['POST', 'GET'])
+# Home route
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == "POST":
-        url_received = request.form["longUrl"]
-        customAlias = request.form["customAlias"]
-        customAliasCheck = Urls.query.filter_by(custom=customAlias).first()
-        found_url = Urls.query.filter_by(long=url_received).first()
-        if not customAliasCheck:
-            short_url = shorten_url()
+    if request.method == 'POST':
+        longURL = request.form.get('link')
+        custom_suffix = request.form.get('custom_suffix')
+        generate_qr = 'generate_qr' in request.form  # Check if QR checkbox is ticked
+
+        # Check if a custom suffix is provided
+        if custom_suffix:
+            if URL.query.filter_by(short_code=custom_suffix).first():
+                flash('Custom suffix is already taken. Please choose another one.', 'danger')
+                return redirect(url_for('home'))
+            short_code = custom_suffix
         else:
-            short_url = customAlias
-        print(f"Generated URL: {short_url}")
+            short_code = generate_short_code()
+        
+        # Save the URL and short code to the database
+        new_url = URL(long=longURL, short=short_code)
+        db.session.add(new_url)
+        db.session.commit()
 
-        if found_url:
-            if customAliasCheck: 
-                print(found_url.custom)
-            else:
-                return redirect(url_for("display_short_url", url=found_url.short))
-        else:
-            if customAliasCheck:
-                new_url = Urls(long=url_received, custom=short_url)
-            else:
-                new_url = Urls(long=url_received, short=short_url)
-            db.session.add(new_url)
-            db.session.commit()
-            return redirect(url_for("display_short_url", url=short_url))
+        # Generate QR code if requested
+        qr_code_path = None
+        full_short_url = request.host_url + short_code
+        qr = qrcode.make(full_short_url)
+        qr_code_path = f'static/qr_images/{short_code}.png'
+        os.makedirs(os.path.dirname(qr_code_path), exist_ok=True)
+        qr.save(qr_code_path)
+
+        # Redirect to the page that shows the shortened link (and optionally the QR code)
+        return redirect(url_for('shortened_link', short_code=short_code, qr=qr_code_path))
+    
+    return render_template('index.html')
+
+# Display the shortened link and QR code (if generated)
+@app.route('/link/<short_code>')
+def shortened_link(short_code):
+    full_short_url = request.host_url + short_code
+    qr_code_path = request.args.get('qr')
+    return render_template('shortened_link.html', full_short_url=full_short_url, qr_code_path=qr_code_path)
+
+# Redirect to the original URL
+@app.route('/<short_code>')
+def redirect_to_url(short_code):
+    url = URL.query.filter_by(short_code=short_code).first_or_404()
+    if url.long:
+        return redirect(url.long)
     else:
-        return render_template("index.html")
+        render_template("notfound.html")
 
-# Back-end за страницата на генерирания URL адрес
-@app.route('/<short_url>')
-def redirection(short_url=None, customAlias=None):
-    if customAlias:
-        long_url = Urls.query.filter_by(custom=customAlias).first()
-    elif short_url:
-        long_url = Urls.query.filter_by(short=short_url).first()
-    if long_url:
-        return redirect(long_url.long)
-    else:
-        return render_template('notfound.html')
-
-@app.route('/display/<url>')
-def display_short_url(url):
-    return render_template('shorturl.html', short_url_display=url)
+# Initialize the database
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True)
