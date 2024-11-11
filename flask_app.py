@@ -89,4 +89,4 @@ def redirect_to_url(short_code):
         return render_template('notfound.html'), 404  # Make sure to create a notfound.html template
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="8080")
+    app.run(host="0.0.0.0", port="5000")

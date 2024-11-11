@@ -1,4 +1,8 @@
-footer,header{display:calc(block)}summary{display:list-item}
+footer,header{display:calc(block)}
+
+* {
+    box-sizing: border-box;
+}
 
 header {
     background: linear-gradient(to bottom, white, #0056b3);
@@ -69,7 +73,7 @@ footer {
     padding: 20px;
     background: linear-gradient(to top, white, #0056b3);
     color: black;
-    position: relative;
+    position: sticky;
     width: 100%;
 }
   
