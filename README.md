@@ -7,6 +7,8 @@
 
 - [Python 3.11.9](https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe)
 - flask - библиотека за уеб приложения
+- HTML5
+- CSS3
 - Всички останали библиотеки са изписани в requirements.txt файла
 
 
