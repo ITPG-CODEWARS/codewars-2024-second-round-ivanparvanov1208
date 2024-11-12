@@ -1,109 +1,109 @@
-* {
-    box-sizing: border-box;
+* { /* Задава общи стилове за всички елементи на страницата */
+    box-sizing: border-box; /* Включва padding и border в общата ширина и височина на елементите */
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+body { /* Конфигуриране на тялото на документа */
+    font-family: 'Arial', sans-serif; /* Задава шрифта на тялото */
+    background-color: #f0f2f5; /* Задава светлосив фон на тялото */
+    display: flex; /* Използва flexbox за подредба на елементите в body */
+    justify-content: center; /* Центрира елементите по хоризонтала */
+    align-items: center; /* Центрира елементите по вертикала */
+    height: 100vh; /* Задава височина на body равна на 100% от височината на видимата част на браузъра */
+    margin: 0; /* Премахва стандартния margin на body */
 }
 
-.container {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    text-align: center;
+.container { /* Конфигуриране на контейнера */
+    background: white; /* Задава бял фон на контейнера */
+    padding: 30px; /* Добавя вътрешно отстояние от 30px */
+    border-radius: 8px; /* Закръгля ръбовете на контейнера */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Добавя сянка на контейнера */
+    width: 350px; /* Задава широчина на контейнера */
+    text-align: center; /* Центрира текста в контейнера */
 }
 
-h1 {
-    color: #ff3b30;
-    margin-bottom: 20px;
-    font-size: 24px;
+h1 { /* Конфигуриране на главното заглавие */
+    color: #ff3b30; /* Задава червен цвят на текста */
+    margin-bottom: 20px; /* Добавя отстояние от 20px под заглавието */
+    font-size: 24px; /* Задава размер на шрифта 24px */
 }
 
-p {
-    color: #666;
-    margin: 10px 0;
-    font-size: 16px;
+p { /* Конфигуриране на параграфите */
+    color: #666; /* Задава сив цвят на текста */
+    margin: 10px 0; /* Добавя отстояние от 10px вертикално */
+    font-size: 16px; /* Задава размер на шрифта 16px */
 }
 
-a {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.2s;
+a { /* Конфигуриране на линковете */
+    display: inline-block; /* Задава display inline-block на линковете */
+    margin-top: 15px; /* Добавя отстояние от 15px над линковете */
+    padding: 12px; /* Добавя вътрешно отстояние от 12px */
+    background-color: #007bff; /* Задава син фон на линковете */
+    color: white; /* Задава бял цвят на текста на линковете */
+    text-decoration: none; /* Премахва подчертаването на линковете */
+    border-radius: 5px; /* Закръгля ръбовете на линковете */
+    font-size: 16px; /* Задава размер на шрифта 16px */
+    transition: background-color 0.3s, transform 0.2s; /* Добавя плавен преход за фона и трансформацията при взаимодействие */
 }
 
-a:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+a:hover { /* Стилове при задържане на курсора над линковете */
+    background-color: #0056b3; /* Променя фона на линка на по-тъмен син при задържане */
+    transform: translateY(-2px); /* Премества линка нагоре с 2px при задържане */
 }
 
-.logo {
-    position: relative;
-    top: 35px;
-    z-index: 10;
-    text-align: center;
+.logo { /* Конфигуриране на логото */
+    position: relative; /* Задава относително позициониране на логото */
+    top: 35px; /* Премества логото надолу с 35px */
+    z-index: 10; /* Задава z-index за надмощие над други елементи */
+    text-align: center; /* Центрира текста на логото */
 }
 
-.footer {
-    background: linear-gradient(to bottom, #0040ff, white);
-    color: black; 
-    width: 70%; 
-    padding: 20px;
-    margin-top: 100px;
-    text-align: center;
-    margin-left: 161px;
+.footer { /* Конфигуриране на footer-а */
+    background: linear-gradient(to bottom, #0040ff, white); /* Задава градиентен фон от тъмносиньо към бяло */
+    color: black; /* Задава черен цвят на текста */
+    width: 70%; /* Задава широчина 70% на footer-а */
+ padding: 20px; /* Добавя вътрешно отстояние от 20px на footer-а */
+    margin-top: 100px; /* Добавя отстояние от 100px над footer-а */
+    text-align: center; /* Центрира текста в footer-а */
+    margin-left: 161px; /* Добавя отстояние от 161px вляво на footer-а */
 }
   
-.footer-content {
-    max-width: 1500px; 
-    margin: 0 auto; 
+.footer-content { /* Конфигуриране на съдържанието на footer-а */
+    max-width: 1500px; /* Задава максимална ширина на съдържанието */
+    margin: 0 auto; /* Центрира съдържанието по хоризонтала */
 }
   
-.footer-logo {
-    display: block;
-    max-width: 200px;
-    height: auto;
-    border-radius: 50px;
+.footer-logo { /* Конфигуриране на логото в footer-а */
+    display: block; /* Задава display block на логото */
+    max-width: 200px; /* Задава максимална ширина на логото */
+    height: auto; /* Задава автоматична височина на логото */
+    border-radius: 50px; /* Закръгля ръбовете на логото */
 }
 
-.footer-logo img {
-    border-radius: 30%;
-    max-width: 200px;
+.footer-logo img { /* Конфигуриране на изображението на логото */
+    border-radius: 30%; /* Закръгля ръбовете на изображението на логото */
+    max-width: 200px; /* Задава максимална ширина на изображението */
 }
 
-.footer-links,
-.footer-social {
-    margin: 10px 0; 
-    text-align: center;
+.footer-links, /* Конфигуриране на линковете в footer-а */
+.footer-social { /* Конфигуриране на социалните линкове в footer-а */
+    margin: 10px 0; /* Добавя отстояние от 10px вертикално */
+    text-align: center; /* Центрира текста на линковете */
 }
   
-.footer-link,
-.social-link {
-    color: black; 
-    text-decoration: none;
-    margin: 0 15px; 
+.footer-link, /* Конфигуриране на индивидуалните линкове в footer-а */
+.social-link { /* Конфигуриране на социалните линкове */
+    color: black; /* Задава черен цвят на линковете */
+    text-decoration: none; /* Премахва подчертаването на линковете */
+    margin: 0 15px; /* Добавя отстояние от 15px хоризонтално между линковете */
 }
   
-.footer-link:hover,
-.social-link:hover {
-    text-decoration: underline; 
+.footer-link:hover, /* Стилове при задържане на курсора над индивидуалните линкове */
+.social-link:hover { /* Стилове при задържане на курсора над социалните линкове */
+    text-decoration: underline; /* Добавя подчертаване при задържане */
 }
   
-.footer-bottom {
-    margin-top: 20px;
-    font-size: 14px; 
-    text-align: center; 
+.footer-bottom { /* Конфигуриране на долната част на footer-а */
+    margin-top: 20px; /* Добавя отстояние от 20px над долната част */
+    font-size: 14px; /* Задава размер на шрифта */
+    text-align: center; /* Центрира текста в долната част */
 }

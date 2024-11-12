@@ -1,140 +1,140 @@
-footer,header{display:calc(block)}
+footer,header{display:calc(block)} /* Определя, че footer и header елементи ще се показват с calc(block), но calc не е валидна стойност за display, трябва да се коригира. */
 
-* {
-    box-sizing: border-box;
+* { /* Задава общи стилове за всички елементи на страницата */
+    box-sizing: border-box; /* Включва padding и border в общата ширина и височина на елементите */
 }
 
-header {
-    background: linear-gradient(to bottom, white, #0056b3);
-    height: 100px;
-    width: 100%;
+header { /* Конфигуриране на header-а */
+    background: linear-gradient(to bottom, white, #0056b3); /* Задава градиентен фон от бяло към тъмносиньо */
+    height: 100px; /* Определя височината на header-а */
+    width: 100%; /* Задава широчина 100% на header-а */
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
-    text-align: center;
-    margin: 0;
+body { /* Конфигуриране на тялото (main, footer) */
+    font-family: 'Arial', sans-serif; /* Задава шрифта на тялото */
+    background-color: #f0f2f5; /* Задава светлосив фон на тялото */
+    text-align: center; /* Центрира текста в тялото */
+    margin: 0; /* Премахва стандартния margin на body */
 }
 
-.container {
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    margin: 20px auto; 
+.container { /* Конфигуриране на контейнера, в който се намира формата за линковете */
+    background: white; /* Задава бял фон на контейнера */
+    display: flex; /* Използва flexbox за подредба на елементите в контейнера */
+    flex-direction: column; /* Подрежда елементите по колони */
+    justify-content: center; /* Центрира елементите по вертикала */
+    padding: 30px; /* Добавя вътрешно отстояние от 30px */
+    border-radius: 8px; /* Закръгля ръбовете на контейнера */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Добавя сянка на контейнера */
+    width: 350px; /* Задава широчина на контейнера */
+    margin: 20px auto; /* Центрира контейнера по хоризонтала с отстояние от 20px */
 }
 
-h1 {
-    color: #333;
-    margin-bottom: 20px; 
+h1 { /* Конфигуриране на главното заглавие */
+    color: #333; /* Задава тъмен цвят на текста */
+    margin-bottom: 20px; /* Добавя отстояние от 20px под заглавието */
 }
 
-input {
-    width: 89%;
-    padding: 12px;
-    margin: 10px 7px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border-color 0.3s;
-    align-items: center;
+input { /* Конфигуриране на входните полета */
+    width: 89%; /* Задава широчина 89% на входните полета */
+    padding: 12px; /* Добавя вътрешно отстояние от 12px */
+    margin: 10px 7px; /* Добавя отстояние от 10px вертикално и 7px хоризонтално */
+    border: 1px solid #ccc; /* Задава сива рамка на входните полета */
+    border-radius: 5px; /* Закръгля ръбовете на входните полета */
+    font-size: 14px; /* Задава размер на шрифта */
+    transition: border-color 0.3s; /* Добавя плавен преход за цвета на рамката при фокус */
+    align-items: center; /* Неправилно свойство, не е валидно за input */
 }
 
-input:focus {
-    border-color: #007bff;
-    outline: none;
+input:focus { /* Стилове при фокус на входните полета */
+    border-color: #007bff; /* Променя цвета на рамката при фокус */
+    outline: none; /* Премахва стандартния outline при фокус */
 }
 
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 15px
+button { /* Конфигуриране на бутоните */
+    width: 100%; /* Задава широчина 100% на бутоните */
+    padding: 12px; /* Добавя вътрешно отстояние от 12px */
+    background-color: #007bff; /* Задава син фон на бутоните */
+    color: white; /* Задава бял цвят на текста */
+    border: none; /* Премахва стандартната рамка на бутоните */
+    border-radius: 5px; /* Закръгля ръбовете на бутоните */
+    font-size: 16px; /* Задава размер на шрифта */
+    cursor: pointer; /* Променя курсора на р ъка при задържане над бутона */
+    transition: background-color 0.3s, transform 0.2s; /* Добавя плавен преход за фона и трансформацията при взаимодействие */
+    margin-top: 15px; /* Добавя отстояние от 15px над бутона */
 }
 
-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+button:hover { /* Стилове при задържане на курсора над бутона */
+    background-color: #0056b3; /* Променя фона на бутона на по-тъмен син при задържане */
+    transform: translateY(-2px); /* Премества бутона нагоре с 2px при задържане */
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(to top, white, #0056b3);
-    color: black;
-    position: sticky;
-    width: 100%;
+footer { /* Конфигуриране на footer-а */
+    text-align: center; /* Центрира текста в footer-а */
+    padding: 20px; /* Добавя вътрешно отстояние от 20px */
+    background: linear-gradient(to top, white, #0056b3); /* Задава градиентен фон от бяло към тъмносиньо */
+    color: black; /* Задава черен цвят на текста */
+    position: sticky; /* Задава позициониране sticky, за да остане на видно място при скрол */
+    width: 100%; /* Задава широчина 100% на footer-а */
 }
   
-.footer-content {
-    max-width: 1500px;
-    margin: 0 auto;
+.footer-content { /* Конфигуриране на съдържанието на footer-а */
+    max-width: 1500px; /* Задава максимална ширина на съдържанието */
+    margin: 0 auto; /* Центрира съдържанието по хоризонтала */
 }
   
-.footer-logo {
-    display: block;
-    max-width: 200px;
-    height: auto;
-    border-radius: 50px;
+.footer-logo { /* Конфигуриране на логото в footer-а */
+    display: block; /* Задава display block на логото */
+    max-width: 200px; /* Задава максимална ширина на логото */
+    height: auto; /* Задава автоматична височина на логото */
+    border-radius: 50px; /* Закръгля ръбовете на логото */
 }
 
-.footer-logo img {
-    border-radius: 30%;
-    max-width: 200px;
+.footer-logo img { /* Конфигуриране на изображението на логото */
+    border-radius: 30%; /* Закръгля ръбовете на изображението на логото */
+    max-width: 200px; /* Задава максимална ширина на изображението */
 }
 
-.footer-links,
-.footer-social {
-    margin: 10px 0;
-    text-align: center;
+.footer-links, /* Конфигуриране на линковете в footer-а */
+.footer-social { /* Конфигуриране на социалните линкове в footer-а */
+    margin: 10px 0; /* Добавя отстояние от 10px вертикално */
+    text-align: center; /* Центрира текста на линковете */
 }
   
-.footer-link,
-.social-link {
-    color: black;
-    text-decoration: none; 
-    margin: 0 15px;
+.footer-link, /* Конфигуриране на индивидуалните линкове в footer-а */
+.social-link { /* Конфигуриране на социалните линкове */
+    color: black; /* Задава черен цвят на линковете */
+    text-decoration: none; /* Премахва подчертаването на линковете */
+    margin: 0 15px; /* Добавя отстояние от 15px хоризонтално между линковете */
 }
   
-.footer-link:hover,
-.social-link:hover {
-    text-decoration: underline;
+.footer-link:hover, /* Стилове при задържане на курсора над индивидуалните линкове */
+.social-link:hover { /* Стилове при задържане на курсора над социалните линкове */
+    text-decoration: underline; /* Добавя подчертаване при задържане */
 }
   
-.footer-bottom {
-    margin-top: 20px;
-    font-size: 14px; 
-    text-align: center; 
+.footer-bottom { /* Конфигуриране на долната част на footer-а */
+    margin-top: 20px; /* Добавя отстояние от 20px над долната част */
+    font-size: 14px; /* Задава размер на шрифта */
+    text-align: center; /* Центрира текста в долната част */
 }
 
-.logo {
-    position: relative;
-    top: 20px;
-    z-index: 10;
-    text-align: center;
+.logo { /* Конфигуриране на логото в основната част */
+    position: relative; /* Задава относително позициониране на логото */
+    top: 20px; /* Премества логото надолу с 20px */
+    z-index: 10; /* Задава z-index за надмощие над други елементи */
+    text-align: center; /* Центрира текста на логото */
 }
 
-@media (max-width: 400px) {
-    .container {
-        width: 90%;
+@media (max-width: 400px) { /* Стилове за екрани с ширина до 400px */
+    .container { /* Конфигуриране на контейнера */
+        width: 90%; /* Задава шир очина 90% на контейнера */
     }
 
-    h1 {
-        font-size: 20px;
+    h1 { /* Конфигуриране на главното заглавие при малки екрани */
+        font-size: 20px; /* Задава размер на шрифта 20px */
     }
 
-    button {
-        font-size: 14px;
+    button { /* Конфигуриране на бутоните при малки екрани */
+        font-size: 14px; /* Задава размер на шрифта 14px */
     }
 }
