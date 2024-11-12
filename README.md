@@ -28,7 +28,7 @@
   python flask_app.py
 ```
 
-Или просто отворете "flask_app.py" файла с 
+Или просто отворете "flask_app.py" файла с python launcher приложението
 
 
 ## Authors
