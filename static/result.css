@@ -74,8 +74,8 @@ footer {
 }
   
 .footer-content {
-    max-width: 1500px; /* Max width for footer content */
-    margin: 0 auto; /* Center the footer content */
+    max-width: 1500px;
+    margin: 0 auto;
 }
   
 .footer-logo {
@@ -92,26 +92,26 @@ footer {
 
 .footer-links,
 .footer-social {
-    margin: 10px 0; /* Space between sections */
+    margin: 10px 0; 
     text-align: center;
 }
   
 .footer-link,
 .social-link {
-    color: black; /* White text for links */
-    text-decoration: none; /* Remove underline from links */
-    margin: 0 15px; /* Space between links */
+    color: black;
+    text-decoration: none; 
+    margin: 0 15px; 
 }
   
 .footer-link:hover,
 .social-link:hover {
-    text-decoration: underline; /* Underline on hover for links */
+    text-decoration: underline; 
 }
   
 .footer-bottom {
-    margin-top: 20px; /* Space above bottom text */
-    font-size: 14px; /* Smaller font size for copyright */
-    text-align: center; /* Center align copyright text */
+    margin-top: 20px; 
+    font-size: 14px; 
+    text-align: center; 
 }
 
 .url-result {
@@ -148,49 +148,49 @@ footer {
 
 .footer {
     background: linear-gradient(to bottom, #0040ff, white);
-    color: black; /* Text color */
-    width: 100%; /* Full width */
-    padding: 20px; /* Padding inside the footer */
-    text-align: center; /* Center align text */
-    position: relative; /* Position relative for any absolute children */
+    color: black; 
+    width: 100%; 
+    padding: 20px; 
+    text-align: center; 
+    position: relative; 
 }
 
 .footer-logo {
     display: block;
-    margin: 0 auto; /* Center the logo */
+    margin: 0 auto;
 }
 
 .footer-logo img {
-    max-width: 150px; /* Adjust logo size */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 150px; 
+    height: auto; 
 }
 
 .footer-content {
-    max-width: 1200px; /* Max width for footer content */
-    margin: 20px auto; /* Center the footer content */
+    max-width: 1200px; 
+    margin: 20px auto;
 }
 
 .footer-links,
 .footer-social {
-    margin: 10px 0; /* Space between sections */
+    margin: 10px 0;
 }
 
 .footer-link,
 .social-link {
-    color: black; /* Text color for links */
-    text-decoration: none; /* Remove underline from links */
-    margin: 0 15px; /* Space between links */
-    transition: color 0.3s; /* Smooth color transition */
+    color: black; 
+    text-decoration: none; 
+    margin: 0 15px; 
+    transition: color 0.3s; 
 }
 
 .footer-link:hover,
 .social-link:hover {
-    text-decoration: underline; /* Underline on hover for links */
-    color: #007bff; /* Change color on hover */
+    text-decoration: underline; 
+    color: #007bff;
 }
 
 .footer-bottom {
-    margin-top: 20px; /* Space above bottom text */
-    font-size: 14px; /* Smaller font size for copyright */
-    text-align: center; /* Center align copyright text */
+    margin-top: 20px; 
+    font-size: 14px; 
+    text-align: center; 
 }

@@ -14,24 +14,24 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f2f5;
     text-align: center;
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 .container {
     background: white;
     display: flex;
-    flex-direction: column; /* Stack form elements vertically */
+    flex-direction: column;
     justify-content: center;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 350px;
-    margin: 20px auto; /* Center horizontally and add margin at the top */
+    margin: 20px auto; 
 }
 
 h1 {
     color: #333;
-    margin-bottom: 20px; /* Add margin below the h1 for spacing */
+    margin-bottom: 20px; 
 }
 
 input {
