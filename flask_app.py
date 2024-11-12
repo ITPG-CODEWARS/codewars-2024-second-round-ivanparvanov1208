@@ -38,35 +38,43 @@ def generate_short_code():
         if not Urls.query.filter_by(short=short_code).first():
             return short_code
 
-# Home route
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         longURL = request.form.get('longUrl')
         custom_suffix = request.form.get('customAlias')
 
-        # Check if a custom suffix is provided
-        if custom_suffix:
-            short_code = custom_suffix
+        # Check if the long URL already exists in the database
+        existing_url = Urls.query.filter_by(long=longURL).first()
+        if existing_url:
+            # If it exists, redirect to the existing short URL
+            full_short_url = request.host_url + existing_url.short
+            qr_code_path = f'static/img/qr_images/{existing_url.short}.png'
+            return redirect(url_for('shortened_link', short_code=existing_url.short, qr=qr_code_path))
         else:
-            short_code = generate_short_code()
-        
-        # Save the URL and short code to the database only if longURL is valid
-        if longURL:
-            new_url = Urls(long=longURL, short=short_code)
-            db.session.add(new_url)
-            db.session.commit()
 
-            # Generate QR code if requested
-            qr_code_path = None
-            full_short_url = request.host_url + short_code
-            qr = qrcode.make(full_short_url)
-            qr_code_path = f'static/img/qr_images/{short_code}.png'
-            os.makedirs(os.path.dirname(qr_code_path), exist_ok=True)
-            qr.save(qr_code_path)
+            # Check if a custom suffix is provided
+            if custom_suffix:
+                short_code = custom_suffix
+            else:
+                short_code = generate_short_code()
 
-            # Redirect to the page that shows the shortened link (and optionally the QR code)
-            return redirect(url_for('shortened_link', short_code=short_code, qr=qr_code_path))
+            # Save the URL and short code to the database only if longURL is valid
+            if longURL:
+                new_url = Urls(long=longURL, short=short_code)
+                db.session.add(new_url)
+                db.session.commit()
+
+                # Generate QR code if requested
+                qr_code_path = None
+                full_short_url = request.host_url + short_code
+                qr = qrcode.make(full_short_url)
+                qr_code_path = f'static/img/qr_images/{short_code}.png'
+                os.makedirs(os.path.dirname(qr_code_path), exist_ok=True)
+                qr.save(qr_code_path)
+
+                # Redirect to the page that shows the shortened link (and optionally the QR code)
+                return redirect(url_for('shortened_link', short_code=short_code, qr=qr_code_path))
     
     else:
         return render_template('index.html')
